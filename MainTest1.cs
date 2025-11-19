@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SlimeGauntlet
+namespace ConsoleApp1
 {
-    class Program
+    class SlimeGauntletTest1
     {
         enum PlayerState { Idle, Attacking }
 
@@ -11,7 +11,7 @@ namespace SlimeGauntlet
         static int[] enemyHP = new int[] { 5, 7, 6, 8 };  // 一排史莱姆的HP
         static Random rng = new Random();
 
-        static void Main()
+        public static void MainTest1()
         {
             Console.WriteLine("=== Slime Gauntlet 史莱姆试炼 ===");
             bool playAgain;
