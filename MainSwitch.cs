@@ -1,18 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-   class Practice
+    class Practice
     {
         static void Main()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.WriteLine("=====choose your practice=======!!");
-            //SlimeGauntletTest1.MainTest1();
-            SlimeGauntletTest2.MainTest2();
+
+            FarmGame game = new FarmGame();  // 创建实例
+            game.Start();                    // 调用实例方法
+
+            // SlimeGauntletTest.MainTest2();
             // SlimeGauntletTest3.MainTest3();
         }
     }

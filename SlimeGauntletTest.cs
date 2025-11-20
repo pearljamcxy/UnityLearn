@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ConsoleApp1
 {
-    class SlimeGauntletTest2
+    class SlimeGauntletTest
     {
         enum PlayerState {Idel, Attacking};
         static int[] EnemyHP = new int[] { 12, 24, 33, 10 };
