@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Crop.cs" />
+    <Compile Include="Dish.cs" />
     <Compile Include="MainSwitch.cs" />
     <Compile Include="FarmGame.cs" />
     <Compile Include="Planet.cs" />
