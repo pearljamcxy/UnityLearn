@@ -75,8 +75,26 @@ namespace ConsoleApp1
                 }
              );
 
+            // 创建玩家
+            Player player = new Player();
+            player.AddIngredient(Ingredient.Bread, 10);
+            player.AddIngredient(Ingredient.Bacon, 12);
+            player.AddIngredient(Ingredient.Beef, 10);
+            player.AddIngredient(Ingredient.Cheese, 12);
+            player.AddIngredient(Ingredient.Carrot, 11);
+            player.AddIngredient(Ingredient.Lettuce, 11);
 
+            player.PlayerInfo();
 
+            // 做菜
+            Kitchen.CookDish(player, burgerKing);
+            Kitchen.CookDish(player, veggieBurger);
+            Kitchen.CookDish(player, baconCheeseBurger);
+
+            player.PlayerInfo();
+
+            Console.WriteLine("游戏结束，按任意键退出");
+            Console.ReadKey();
 
 
         }

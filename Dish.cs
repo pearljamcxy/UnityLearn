@@ -6,8 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
-{
+namespace ConsoleApp1 { 
     //先把架构搭出来，再往里填东西
     //===== 材料定义 =====
     public enum Ingredient
@@ -71,10 +70,40 @@ namespace ConsoleApp1
             Console.WriteLine($"Gold:{Gold}");
             Console.WriteLine("================================");
         }
-
+    }
     //===== 厨房 =====
-    public class Kitchen
+    public class Kitchen 
     {
+        public static bool CookDish(Player player, Dish dish)
+            {
+                //检查dish是不是在player的背包里
+                foreach (var ingredient in dish.RequiredIngredients)
+                {
+                    if (!player.Inventory.ContainsKey(ingredient) || player.Inventory[ingredient] <= 0)
+                    {
+                        Console.WriteLine("there are not enough ingredients in bag");
+                        return false;
+                    }
+                    
+                }
+
+                Console.WriteLine($"Start to cook {dish.Name}....");
+                Thread.Sleep(1000 * dish.CookTime);
+
+                //消耗材料
+                foreach (var ingredient in dish.RequiredIngredients)
+                {
+                    player.Inventory[ingredient] = Math.Max(0, player.Inventory[ingredient] -1);
+                    
+                }
+
+                //挣钱
+                player.Gold += dish.Price;
+
+                Console.WriteLine($"you cooked dish{dish.Name} and sold it; you have earn {dish.Price} gold");
+                return true;
+
+            }
 
     }
 
