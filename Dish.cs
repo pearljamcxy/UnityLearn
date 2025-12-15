@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace ConsoleApp1
 {
     //先把架构搭出来，再往里填东西
     //===== 材料定义 =====
-    enum Ingredient
+    public enum Ingredient
     {
         Bread,
         Bacon,
@@ -44,15 +45,39 @@ namespace ConsoleApp1
         }
      }
 
+    // ===== 玩家 =====
+    //凡是有状态、会变化、需要保存的东西，一律不能 static。static 和“状态”天生相斥。
+    public class Player
+    {
+        public int Gold = 500;
+        public Dictionary<Ingredient, int> Inventory = new Dictionary<Ingredient, int>();
+
+        public void AddIngredient(Ingredient ingredient, int amount = 1)
+        {
+            if (!Inventory.ContainsKey(ingredient))
+            {
+                Inventory[ingredient] = 0;
+            }
+            Inventory[ingredient] += amount;
+        }
+
+        public void PlayerInfo()
+        {
+            Console.WriteLine("==========Player's Bag==========");
+            foreach (var item in Inventory)
+            {
+                Console.WriteLine($"{item.Key} x {item.Value}");
+            }
+            Console.WriteLine($"Gold:{Gold}");
+            Console.WriteLine("================================");
+        }
+
     //===== 厨房 =====
-    public static class Kitchen
+    public class Kitchen
     {
 
     }
 
-    public static class Player
-    {
-
-    }
+   
     
 }
