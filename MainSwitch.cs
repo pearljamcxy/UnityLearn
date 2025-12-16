@@ -35,49 +35,11 @@ namespace ConsoleApp1
 
             //==============================做饭游戏入口=========================================
             //定义三种dish
-            Dish burgerKing = new Dish(
-                "BurgerKing", 400, 10, 10,
-                new List<Ingredient>
-                {
-                    Ingredient.Bread,
-                    Ingredient.Bacon,
-                    Ingredient.Beef,
-                    Ingredient.Cheese,
-                    Ingredient.Carrot,
-                    Ingredient.Lettuce
-                }
-             );
-
-            Dish baconCheeseBurger = new Dish(
-                "BaconCheeseBurger",
-                250,
-                7,
-                10,
-                new List<Ingredient>
-                {
-                    Ingredient.Cheese,
-                    Ingredient.Bread,
-                    Ingredient.Bacon,
-                }
-             );
-
-            Dish veggieBurger = new Dish(
-                "VeggieBurger",
-                200,
-                5,
-                10,
-                new List<Ingredient>
-                {
-                    Ingredient.Bread,
-                    Ingredient.Lettuce,
-                    Ingredient.Carrot,
-                    Ingredient.Cheese
-                }
-             );
+     
 
             // 创建玩家
             Player player = new Player();
-            player.AddIngredient(Ingredient.Bread, 10);
+            player.BuyIngredient(Ingredient.Bread, 10);
             player.AddIngredient(Ingredient.Bacon, 12);
             player.AddIngredient(Ingredient.Beef, 10);
             player.AddIngredient(Ingredient.Cheese, 12);

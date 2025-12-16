@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -42,7 +43,7 @@ namespace ConsoleApp1 {
             SpoilTime = spoilTime;
             RequiredIngredients = requiredIngredients;
         }
-     }
+    }
 
     // ===== 玩家 =====
     //凡是有状态、会变化、需要保存的东西，一律不能 static。static 和“状态”天生相斥。
@@ -51,13 +52,24 @@ namespace ConsoleApp1 {
         public int Gold = 500;
         public Dictionary<Ingredient, int> Inventory = new Dictionary<Ingredient, int>();
 
-        public void AddIngredient(Ingredient ingredient, int amount = 1)
+        public bool BuyIngredient(Ingredient ingredient, int amount = 1)
         {
+            int costPrice = Kitchen.IngredientPrices.PriceMap[ingredient] * amount;
+            if (costPrice > Gold)
+            {
+                Console.WriteLine("You don't have enough money to buy this!");
+                return false;
+            }
+            Gold -= costPrice;
+
             if (!Inventory.ContainsKey(ingredient))
             {
                 Inventory[ingredient] = 0;
             }
             Inventory[ingredient] += amount;
+            Console.WriteLine($"Bought {ingredient} x {amount}, cost {costPrice} gold.");
+            return true;
+            
         }
 
         public void PlayerInfo()
@@ -72,38 +84,71 @@ namespace ConsoleApp1 {
         }
     }
     //===== 厨房 =====
-    public class Kitchen 
+    public class Kitchen
     {
-        public static bool CookDish(Player player, Dish dish)
+        public static class IngredientPrices
+        {
+            public static readonly Dictionary<Ingredient, int> PriceMap = new Dictionary<Ingredient, int>
             {
-                //检查dish是不是在player的背包里
-                foreach (var ingredient in dish.RequiredIngredients)
+                { Ingredient.Bread, 2 },
+                { Ingredient.Beef, 10 },
+                { Ingredient.Bacon, 5 },
+                { Ingredient.Cheese, 5 },
+                { Ingredient.Carrot, 2 },
+                { Ingredient.Lettuce, 3 },
+            };
+
+            //方法签名写了什么类型，它就欠世界一个什么
+            public static List<Ingredient> GetIngredientList()
+            {
+                return PriceMap.Keys.ToList();
+            }
+            public static void ShowIngredientPrices()
+            {
+                int index = 1;
+                foreach(var pair in PriceMap)
                 {
-                    if (!player.Inventory.ContainsKey(ingredient) || player.Inventory[ingredient] <= 0)
-                    {
-                        Console.WriteLine("there are not enough ingredients in bag");
-                        return false;
-                    }
-                    
-                }
+                    Console.WriteLine($"{index}.{pair.Key} -- {pair.Value}G");
+                    index++;
+                } 
+            }           
+        }
 
-                Console.WriteLine($"Start to cook {dish.Name}....");
-                Thread.Sleep(1000 * dish.CookTime);
+        public static void BuyIngredient()
+        {
+            
+        }
 
-                //消耗材料
-                foreach (var ingredient in dish.RequiredIngredients)
+        public static bool CookDish(Player player, Dish dish)
+        {
+            //检查dish是不是在player的背包里
+            foreach (var ingredient in dish.RequiredIngredients)
+            {
+                if (!player.Inventory.ContainsKey(ingredient) || player.Inventory[ingredient] <= 0)
                 {
-                    player.Inventory[ingredient] = Math.Max(0, player.Inventory[ingredient] -1);
-                    
+                    Console.WriteLine("there are not enough ingredients in bag");
+                    return false;
                 }
-
-                //挣钱
-                player.Gold += dish.Price;
-
-                Console.WriteLine($"you cooked dish{dish.Name} and sold it; you have earn {dish.Price} gold");
-                return true;
 
             }
+
+            Console.WriteLine($"Start to cook {dish.Name}....");
+            Thread.Sleep(1000 * dish.CookTime);
+
+            //消耗材料
+            foreach (var ingredient in dish.RequiredIngredients)
+            {
+                player.Inventory[ingredient] = Math.Max(0, player.Inventory[ingredient] - 1);
+
+            }
+
+            //挣钱
+            player.Gold += dish.Price;
+
+            Console.WriteLine($"you cooked dish{dish.Name} and sold it; you have earn {dish.Price} gold");
+            return true;
+
+        }
 
     }
 
