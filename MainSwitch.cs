@@ -60,9 +60,16 @@ namespace ConsoleApp1
             Console.ReadKey();
             */
 
+            /*
             // ============================== 做汤游戏入口 =========================================
             Souppp game = new Souppp();  // 创建实例
             game.SoupDone();                    // 调用实例方法
+            */
+
+            // ============================== 造箭工厂入口 =========================================
+
+            Vin_Fletcher_s_Arrow_Workshop arrow = new();
+            arrow.Run();
 
         }
 
