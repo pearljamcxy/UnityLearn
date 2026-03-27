@@ -56,7 +56,8 @@ namespace ConsoleApp1
             Console.WriteLine("GAME START!!");
 
             bool runnning = true;
-            while ( runnning ) {
+            while (runnning)
+            {
                 Console.WriteLine("GAME START!!");
                 Console.WriteLine("=======Choose what you want to do========");
                 Console.WriteLine("1. Show your bag");
@@ -64,7 +65,7 @@ namespace ConsoleApp1
                 Console.WriteLine("3. Buy the ingredient you choose");
                 Console.WriteLine("4. Show dish menu");
                 Console.WriteLine("5. Cook the dish and sell");
-                
+
                 Console.ReadKey();
                 string input = Console.ReadLine();
 
@@ -85,9 +86,10 @@ namespace ConsoleApp1
 
 
                 }
-                
+
             }
 
 
+        }
     }
 }

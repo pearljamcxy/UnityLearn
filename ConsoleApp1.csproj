@@ -67,6 +67,7 @@
     <Compile Include="Planet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SlimeGauntletTest.cs" />
+    <Compile Include="Souppp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
