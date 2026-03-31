@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
+    /// <summary>
+    /// 属性是唯一的通道，字段是真正的仓库： 以后无论你是吃药回血，还是挨打掉血，只要你给 CurrentStamina 赋值，经过 set 里的重重安检后，最终的值都会更新并存在私有的 _currentStamina 里面。
+    /// </summary>
     internal class PetStamina
     {
         public int MaxStamina { get; }
