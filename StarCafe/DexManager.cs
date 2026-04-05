@@ -10,6 +10,8 @@ namespace ConsoleApp1.StarCafe
     public class DexManager
     {
         public static DexManager Instance { get; private set; } = new DexManager();
+
+        private DexManager() { }
         public readonly Dictionary<int, MonsterData> MonsterDict = new();
 
 
