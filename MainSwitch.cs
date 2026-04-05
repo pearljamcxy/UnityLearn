@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp1.StarCafe;
+using System;
 using System.Collections.Generic;
 
 namespace ConsoleApp1
@@ -66,11 +67,25 @@ namespace ConsoleApp1
             game.SoupDone();                    // 调用实例方法
             */
 
+            /*
             // ============================== 造箭工厂入口 =========================================
-
             Vin_Fletcher_s_Arrow_Workshop arrow = new();
             arrow.Run();
+            */
 
+            // ============================== 属性精灵数据蓝图 =========================================
+            DexManager.Instance.LoadAllMonsters();
+
+            var data = DexManager.Instance.MonsterDict[1003];
+            Console.WriteLine($"这是{data.Name},{data.Element}属性,基础攻击力为{data.BaseAttack}");
+            if (data.IsBoss)
+            {
+                Console.WriteLine("它是Boss！！注意！");
+            }
+            else
+            {
+                Console.WriteLine("你得到了新的伙伴！");
+            }
         }
 
 

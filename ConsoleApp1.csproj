@@ -70,6 +70,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SlimeGauntletTest.cs" />
     <Compile Include="Souppp.cs" />
+    <Compile Include="StarCafe\MonsterData.cs" />
+    <Compile Include="StarCafe\DexManager.cs" />
     <Compile Include="Vin Fletcher’s Arrow Workshop.cs" />
   </ItemGroup>
   <ItemGroup>
